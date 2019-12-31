@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Banner from './Banner'
 import MainView from './MainView'
+import { actions } from '../../store'
 
 
 const mapState = ( state, ownProps ) => (
@@ -10,9 +11,10 @@ const mapState = ( state, ownProps ) => (
 )
 
 
-const mapDispatch =
-  {
+const mapDispatch = ( dispatch, ownProps ) => (
+  { articlesList: actions.articlesList
   }
+)
 
 
 const Home = props => {

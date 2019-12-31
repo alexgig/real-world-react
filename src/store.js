@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-
+import api from './api'
+import * as R from 'ramda'
 
 const initialState =
   { appName: 'conduit'
@@ -8,8 +9,17 @@ const initialState =
 
 
 const reducers =
-  {
+  { fetchArticlesSuccess: ( state, action ) => {
+    console.log(action)
+    return R.merge(state, { articles : action.payload})
   }
+  }
+
+
+export const fetchArticles = () => async (dispatch) => {
+  const data = await api.Articles.all()
+  dispatch(actions.fetchArticlesSuccess(data.articles))
+}
 
 
 const slice =
