@@ -18,7 +18,7 @@ const ArticleList = props => {
         {
           props.articles.map( article => {
             return (
-              <h2>{article.title}</h2>
+              <h2 key={article.slug}>{article.title}</h2>
             )
           })
         }

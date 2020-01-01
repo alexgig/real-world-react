@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import ArticleList from '../ArticleList'
-import { actions, fetchArticles } from '../../store'
+import { fetchArticles } from '../../store'
 
 
 const MainView = props => {
@@ -10,7 +10,7 @@ const MainView = props => {
   useEffect(() => {
     dispatch(fetchArticles())
   }, [])
-  
+
   return (
     <div className="col-md-9">
       <div className="feed-toggle">
@@ -20,7 +20,7 @@ const MainView = props => {
           </li>
         </ul>
       </div>
-      <button onClick={props.refresh}>Refresh</button>
+      <button onClick={props.fetchArticles}>Refresh</button>
       <ArticleList articles={props.articles}/>
     </div>
   )
@@ -34,7 +34,7 @@ const mapState = ( state, ownProps ) => (
 
 
 const mapDispatch = ( dispatch, ownProps ) => (
-  { refresh: actions.articlesList
+  { fetchArticles: () => dispatch(fetchArticles())
   }
 )
 

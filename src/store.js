@@ -2,6 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 import api from './api'
 import * as R from 'ramda'
 
+
 const initialState =
   { appName: 'conduit'
   , articles: null
@@ -16,12 +17,6 @@ const reducers =
   }
 
 
-export const fetchArticles = () => async (dispatch) => {
-  const data = await api.Articles.all()
-  dispatch(actions.fetchArticlesSuccess(data.articles))
-}
-
-
 const slice =
   createSlice(
     { name: 'app'
@@ -30,9 +25,16 @@ const slice =
     }
   )
 
+  
 export const actions =
     slice.actions
 
+
+export const fetchArticles = () => async (dispatch) => {
+  const data = await api.Articles.all()
+  dispatch(actions.fetchArticlesSuccess(data.articles))
+}
+  
 
 export const store =
   configureStore(
