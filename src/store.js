@@ -11,9 +11,9 @@ const initialState =
 
 const reducers =
   { fetchArticlesSuccess: ( state, action ) => {
-    console.log(action)
-    return R.merge(state, { articles : action.payload})
-  }
+      console.log(action)
+      return R.merge(state, { articles : action.payload})
+    }
   }
 
 

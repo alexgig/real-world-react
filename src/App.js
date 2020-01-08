@@ -9,11 +9,10 @@ const App = (props) => {
   return (
     <div className="App">
       <Header appName={props.appName}></Header>
-      <Home/>
+      <Home />
     </div>
   );
 }
-
 
 const mapState = (state, ownProps) => (
   { appName: state.appName

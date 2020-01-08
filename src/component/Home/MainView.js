@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import ArticleList from '../ArticleList'
 import { fetchArticles } from '../../store'
 
@@ -22,6 +23,8 @@ const MainView = props => {
       </div>
       <button onClick={props.fetchArticles}>Refresh</button>
       <ArticleList articles={props.articles}/>
+      <NavLink to="/test">Test</NavLink>
+      <NavLink to="/">Home</NavLink>
     </div>
   )
 }
