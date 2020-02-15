@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import List from '../List'
-import { actions, fetchUsers } from '../../store'
+import { actions } from '../../store'
 
 
 const MainView = props => {
@@ -22,7 +22,7 @@ const mapState = ( state, ownProps ) => (
 
 
 const mapDispatch = ( dispatch, ownProps ) => (
-  { fetchUsers: () => dispatch(fetchUsers())
+  { fetchUsers: () => dispatch(actions.fetchUsers())
   , resetUsers: () => dispatch(actions.resetUsers())
   }
 )
