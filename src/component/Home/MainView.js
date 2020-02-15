@@ -1,43 +1,29 @@
-import React, { useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import ArticleList from '../ArticleList'
-import { fetchArticles } from '../../store'
+import React from 'react'
+import { connect } from 'react-redux'
+import List from '../List'
+import { actions, fetchUsers } from '../../store'
 
 
 const MainView = props => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchArticles())
-  }, [])
-
   return (
-    <div className="col-md-9">
-      <div className="feed-toggle">
-        <ul className="nav nav-pills outline-active">
-          <li className="nav-item">
-            <a href="" className="nav-link active">Global Feed</a>
-          </li>
-        </ul>
-      </div>
-      <button onClick={props.fetchArticles}>Refresh</button>
-      <ArticleList articles={props.articles}/>
-      <NavLink to="/test">Test</NavLink>
-      <NavLink to="/">Home</NavLink>
+    <div>
+      <button onClick={props.fetchUsers}>Gather troops ...</button>
+      <button onClick={props.resetUsers}>Clear out!</button>
+      <List data={props.users}/>
     </div>
   )
 }
 
 
 const mapState = ( state, ownProps ) => (
-  { articles: state.articles
+  { users: state.users
   }
 )
 
 
 const mapDispatch = ( dispatch, ownProps ) => (
-  { fetchArticles: () => dispatch(fetchArticles())
+  { fetchUsers: () => dispatch(fetchUsers())
+  , resetUsers: () => dispatch(actions.resetUsers())
   }
 )
 

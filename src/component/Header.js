@@ -1,14 +1,13 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 
 const Header = props => {
   return (
-    <nav className="navbar navbar-light">
-      <div className="container">
-        <a className="navbar-brand">
-          {props.appName.toLowerCase()}
-        </a>
-      </div>
+    <nav className="App-header">
+      <NavLink to="/">{props.appName}</NavLink>
+      <NavLink to="/test">Test Page</NavLink>
+      <NavLink to="/test/24">Test id param Page</NavLink>
     </nav>
   )
 }

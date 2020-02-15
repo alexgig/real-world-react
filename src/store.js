@@ -3,16 +3,24 @@ import api from './api'
 import * as R from 'ramda'
 
 
+// Slice
+
+
 const initialState =
-  { appName: 'conduit'
-  , articles: null
+  { users: null
   }
 
 
 const reducers =
-  { fetchArticlesSuccess: ( state, action ) => {
-      console.log(action)
-      return R.merge(state, { articles : action.payload})
+  { fetchUsersSuccess: ( state, action ) => {
+      return R.merge(state, { users : action.payload})
+    }
+  , fetchUsersError: ( state, action ) => {
+      console.error(action.payload)
+      return state
+    }
+  , resetUsers: ( state, action ) => {
+      return R.merge(state, { users: null })
     }
   }
 
@@ -25,16 +33,27 @@ const slice =
     }
   )
 
-  
+
+// Action creators
+
+
 export const actions =
     slice.actions
 
 
-export const fetchArticles = () => async (dispatch) => {
-  const data = await api.Articles.all()
-  dispatch(actions.fetchArticlesSuccess(data.articles))
+export const fetchUsers = (payload) => async (dispatch) => {
+  try {
+    const data = await api.Users.all()
+    dispatch(actions.fetchUsersSuccess(data))
+  }
+  catch (error) {
+    dispatch(actions.fetchUsersError(error.message))
+  }
 }
   
+
+// Store
+
 
 export const store =
   configureStore(
